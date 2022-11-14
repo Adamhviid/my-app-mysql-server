@@ -20,7 +20,7 @@ router.get("/search/artist/:artist", (req, res) => {
   axios.request(options).then(function (response) {
     res.json(response.data.artists[0])
   }).catch(function (error) {
-    console.error(error);
+    throw error;
   });
 })
 

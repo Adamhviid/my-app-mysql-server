@@ -23,9 +23,13 @@ router.post("/login", async (req, res) => {
         const user = result[0];
         const passwordCompare = await bcrypt.compare(password, user.password);
         if (passwordCompare) {
+
           const token = jwt.sign(
-            { user_id: user.id, email },
-            `${process.env.JWT_SECRET_KEY}`, /* process.env.TOKEN_KEY does not work */
+            {
+              user_id: user.id,
+              email: email
+            },
+            `${process.env.JWT_TOKEN_SECRET}`,
             {
               expiresIn: "24h",
             }
@@ -39,7 +43,7 @@ router.post("/login", async (req, res) => {
       if (err) throw err;
     });
   } catch (err) {
-    console.log(err);
+    throw err
   }
 });
 
