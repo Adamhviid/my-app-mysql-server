@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 import API from "./API/theAudioDb_API.js";
 import artist from "./MySQL/routes/artists.js";
 import album from "./MySQL/routes/albums.js";
+import register from "./MySQL/routes/Users/Register.js";
+import login from "./MySQL/routes/Users/Login.js";
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -22,6 +24,8 @@ app.use(cookieParser());
 app.use("/api", API);
 app.use('/db', artist)
 app.use('/db', album)
+app.use('/auth', register)
+app.use('/auth', login)
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

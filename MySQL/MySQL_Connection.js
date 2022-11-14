@@ -28,11 +28,18 @@ connection().connect(function (err) {
                       intYearReleased varchar(255), strStyle varchar(255), strGenre varchar(255), strLabel varchar(255), strReleaseFormat varchar(255), 
                       strAlbumThumb varchar(255), strAlbumCDart varchar(255), strDescriptionEN varchar(255), PRIMARY KEY (idAlbum))`;
 
+  const userTable = `CREATE TABLE if not exists users
+                    (id int(11) NOT NULL AUTO_INCREMENT, email varchar(255), username varchar(255), password varchar(255), PRIMARY KEY (id))`;
+
   connection().query(artistTable, (err) => {
     if (err) throw err;
   });
 
   connection().query(albumTable, (err) => {
+    if (err) throw err;
+  });
+
+  connection().query(userTable, (err) => {
     if (err) throw err;
   });
 

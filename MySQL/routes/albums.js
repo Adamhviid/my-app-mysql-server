@@ -22,13 +22,14 @@ router.get("/search/albums/:artist", async (req, res) => {
         setTimeout(() => {
           data.album.map((album) => {
             const insertQuery = `INSERT INTO albums
-                            (idAlbum, idArtist, idLabel, strAlbum, strAlbumStripped, strArtist, intYearReleased,
-                            strStyle, strGenre, strLabel, strReleaseFormat, strAlbumThumb, strAlbumCDart)
-                            VALUES
-                            ("${album.idAlbum}", "${album.idArtist}", "${album.idLabel}", "${album.strAlbum}", 
-                            "${album.strAlbumStripped}","${album.strArtist}", "${album.intYearReleased}",
-                            "${album.strStyle}", "${album.strGenre}", "${album.strLabel}", "${album.strReleaseFormat}",
-                            "${album.strAlbumThumb}", "${album.strAlbumCDart}")`;
+                                (idAlbum, idArtist, idLabel, strAlbum, strAlbumStripped, strArtist, intYearReleased,
+                                strStyle, strGenre, strLabel, strReleaseFormat, strAlbumThumb, strAlbumCDart)
+                                VALUES
+                                ("${album.idAlbum}", "${album.idArtist}", "${album.idLabel}", "${album.strAlbum}", 
+                                "${album.strAlbumStripped}","${album.strArtist}", "${album.intYearReleased}",
+                                "${album.strStyle}", "${album.strGenre}", "${album.strLabel}", "${album.strReleaseFormat}",
+                                "${album.strAlbumThumb}", "${album.strAlbumCDart}")`;
+
             connection().query(insertQuery, (err) => {
               if (err) throw err;
             });
