@@ -9,6 +9,7 @@ import register from "./MySQL/routes/Users/Register.js";
 import login from "./MySQL/routes/Users/Login.js";
 import deleteAccount from "./MySQL/routes/Users/delete.js";
 import getUser from "./MySQL/routes/Users/getUser.js";
+import updateUsername from "./MySQL/routes/Users/updateUsername.js";
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -30,6 +31,7 @@ app.use('/auth', register)
 app.use('/auth', login)
 app.use('/auth', deleteAccount)
 app.use('/auth', getUser)
+app.use('/auth', updateUsername)
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
