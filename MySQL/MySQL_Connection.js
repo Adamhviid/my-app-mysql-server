@@ -24,12 +24,18 @@ connection().connect(function (err) {
                       strArtistFanart2 varchar(255), strArtistFanart3 varchar(255), strArtistBanner varchar(255), PRIMARY KEY (idArtist))`;
 
   const albumTable = `CREATE TABLE if not exists albums 
-                      (idAlbum varchar(255),idArtist varchar(255), idLabel varchar(255), strAlbum varchar(255), strAlbumStripped varchar(255), strArtist varchar(255),
+                      (idAlbum varchar(255), idArtist varchar(255), idLabel varchar(255), strAlbum varchar(255), strAlbumStripped varchar(255), strArtist varchar(255),
                       intYearReleased varchar(255), strStyle varchar(255), strGenre varchar(255), strLabel varchar(255), strReleaseFormat varchar(255), 
                       strAlbumThumb varchar(255), strAlbumCDart varchar(255), strDescriptionEN varchar(255), PRIMARY KEY (idAlbum))`;
 
+  const authorizationTable = `CREATE TABLE if not exists authorizations
+                              (id int(11) NOT NULL AUTO_INCREMENT, roles varchar(255), PRIMARY KEY (id));
+                              `;
+
   const userTable = `CREATE TABLE if not exists users
-                    (id int(11) NOT NULL AUTO_INCREMENT, email varchar(255), username varchar(255), password varchar(255), PRIMARY KEY (id))`;
+                    (id int(11) NOT NULL AUTO_INCREMENT, email varchar(255), username varchar(255), password varchar(255), authorization varchar(225), PRIMARY KEY (id))`;
+
+  const insertAuthorizationQuery = `INSERT INTO authorizations (roles) VALUES ('admin'), ('user')`;
 
   connection().query(artistTable, (err) => {
     if (err) throw err;
@@ -39,9 +45,19 @@ connection().connect(function (err) {
     if (err) throw err;
   });
 
+  connection().query(authorizationTable, (err) => {
+    if (err) throw err;
+  });
+
+
   connection().query(userTable, (err) => {
     if (err) throw err;
   });
+
+  connection().query(insertAuthorizationQuery, (err) => {
+    if (err) throw err;
+  });
+
 
   connection().end();
 });

@@ -23,9 +23,9 @@ router.post("/register", async (req, res) => {
         const encryptedPassword = await bcrypt.hash(password, salt);
 
         const insertUserQuery = `INSERT INTO users
-                            (email, password) 
-                            VALUES 
-                            ('${email}', '${encryptedPassword}')`;
+                                (email, password, authorization)
+                                VALUES 
+                                ('${email}', '${encryptedPassword}', '2')`;
 
         connection().query(insertUserQuery, (err, result) => {
           res.status(201).send("User created successfully");
