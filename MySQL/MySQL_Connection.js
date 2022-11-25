@@ -15,7 +15,7 @@ connection().connect(function (err) {
   if (err) throw err;
   console.log("Connected to MySQL-server");
 
-  const artistTable = `CREATE TABLE if not exists artists
+  /* const artistTable = `CREATE TABLE if not exists artists
                       (idArtist varchar(255), strArtist varchar(255), strArtistAlternate varchar(255), strLabel varchar(255), idLabel varchar(255),
                       intFormedYear varchar(255),intBornYear varchar(255),intDiedYear varchar(255), strDisbanded varchar(255), strStyle varchar(255), 
                       strGenre varchar(255), strMood varchar(255), strWebsite varchar(255), strBiographyEN varchar(255), 
@@ -33,11 +33,11 @@ connection().connect(function (err) {
                               `;
 
   const userTable = `CREATE TABLE if not exists users
-                    (id int(11) NOT NULL AUTO_INCREMENT, email varchar(255), username varchar(255), password varchar(255), authorization varchar(225), PRIMARY KEY (id))`;
+                    (id int NOT NULL AUTO_INCREMENT, email varchar(255), username varchar(255), password varchar(255), authorization int, PRIMARY KEY (id))`;
 
-  const insertAuthorizationQuery = `INSERT INTO authorizations (roles) VALUES ('admin'), ('user')`;
+  const insertAuthorizationQuery = `INSERT INTO authorizations (roles) VALUES ('admin'), ('user')`; */
 
-  connection().query(artistTable, (err) => {
+  /* connection().query(artistTable, (err) => {
     if (err) throw err;
   });
 
@@ -56,7 +56,7 @@ connection().connect(function (err) {
 
   connection().query(insertAuthorizationQuery, (err) => {
     if (err) throw err;
-  });
+  }); */
 
 
   connection().end();
