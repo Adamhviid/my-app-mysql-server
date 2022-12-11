@@ -8,8 +8,4 @@ const sequelize = new Sequelize({
   dialect: 'mysql',
 });
 
-const db = {};
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-
 export default sequelize;

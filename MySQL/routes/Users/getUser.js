@@ -1,4 +1,4 @@
-import express from "express";
+/* import express from "express";
 import connection from "../../MySQL_Connection.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -25,3 +25,4 @@ router.post("/user", verifyToken, async (req, res) => {
 });
 
 export default router;
+ */

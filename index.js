@@ -5,17 +5,20 @@ import cookieParser from "cookie-parser";
 import API from "./API/theAudioDb_API.js";
 
 //old imports
-import artist from "./MySQL/routes/artists.js";
+/* import artist from "./MySQL/routes/artists.js";
 import album from "./MySQL/routes/albums.js";
-/* import register from "./MySQL/routes/Users/Register.js"; */
+import register from "./MySQL/routes/Users/Register.js"; 
 import login from "./MySQL/routes/Users/Login.js";
 import deleteAccount from "./MySQL/routes/Users/delete.js";
 import getUser from "./MySQL/routes/Users/getUser.js";
-import updateUsername from "./MySQL/routes/Users/updateUsername.js";
+import updateUsername from "./MySQL/routes/Users/updateUsername.js"; */
 
 //sequelize imports
 import sequelize from "./MySQL/Sequelize/ORM_connection.js";
-import register from "./MySQL/Sequelize/Routes/Register.js";
+import authorization from "./MySQL/Sequelize/Models/authorization.js";
+import register from "./MySQL/Sequelize/Routes/register.js";
+import album from "./MySQL/Sequelize/Routes/Artist/albums.js";
+import artist from "./MySQL/Sequelize/Routes/Artist/artist.js";
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -29,6 +32,22 @@ const corsOptions = {
 try {
   await sequelize.authenticate();
   console.log('Sequelize connection has been established successfully.');
+  authorization.findAndCountAll()
+    .then(result => {
+      if (result.count == 0) {
+        authorization.create({
+          id: 1,
+          role: "admin"
+        })
+        authorization.create({
+          id: 2,
+          role: "user"
+        })
+      }
+    })
+    .catch(err => {
+      throw err;
+    });
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }
@@ -41,10 +60,10 @@ app.use("/api", API);
 app.use('/db', artist)
 app.use('/db', album)
 app.use('/auth', register)
-app.use('/auth', login)
+/* app.use('/auth', login)
 app.use('/auth', deleteAccount)
 app.use('/auth', getUser)
-app.use('/auth', updateUsername)
+app.use('/auth', updateUsername) */
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

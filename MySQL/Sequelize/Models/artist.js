@@ -1,12 +1,11 @@
-import { Sequelize, DataTypes, Model } from 'sequelize';
-const sequelize = new Sequelize('sqlite::memory:');
+import { DataTypes } from "sequelize";
+import sequelize from "../ORM_connection.js";
 
-class Artist extends Model { }
-
-Artist.init({
+const Artist = sequelize.define("artists", {
   idArtist: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    primaryKey: true,
   },
   strArtist: {
     type: DataTypes.STRING,
@@ -82,8 +81,13 @@ Artist.init({
     type: DataTypes.STRING,
   },
 }, {
-  sequelize,
-  modelName: 'Artist'
+  timestamps: false
 });
 
-Artist.sync();
+Artist.sync().then(() => {
+  console.log('Artist table created successfully!');
+}).catch((error) => {
+  console.error('Unable to create table : ', error);
+});
+
+export default Artist;

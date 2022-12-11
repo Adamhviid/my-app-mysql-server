@@ -1,4 +1,4 @@
-import express from "express";
+/* import express from "express";
 import connection from "../../MySQL_Connection.js";
 import * as dotenv from 'dotenv'
 dotenv.config()
@@ -20,3 +20,4 @@ router.post("/user/update", async (req, res) => {
 });
 
 export default router;
+ */

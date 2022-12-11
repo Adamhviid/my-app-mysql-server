@@ -1,9 +1,7 @@
-import { Sequelize, DataTypes, Model } from 'sequelize';
-const sequelize = new Sequelize('sqlite::memory:');
+import { DataTypes } from "sequelize";
+import sequelize from "../ORM_connection.js"
 
-class User extends Model { }
-
-export default User.init({
+const User = sequelize.define("users", {
   id: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -25,12 +23,13 @@ export default User.init({
     allowNull: false
   },
 }, {
-  // Other model options go here
-  sequelize, // We need to pass the connection instance
-  modelName: 'user', // We need to choose the model name
-  tableName: 'users',
-  timestamps: false,
+  timestamps: false
 });
 
-// creates table if not exists
-User.sync({ force: true });
+User.sync().then(() => {
+  console.log('User table created successfully!');
+}).catch((error) => {
+  console.error('Unable to create table : ', error);
+});
+
+export default User;
