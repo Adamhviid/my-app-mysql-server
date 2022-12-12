@@ -1,4 +1,4 @@
-import express from "express";
+/* import express from "express";
 import connection from "../../MySQL_Connection.js";
 import bcrypt from "bcrypt";
 import * as dotenv from 'dotenv'
@@ -39,4 +39,4 @@ router.post("/register", async (req, res) => {
   }
 });
 
-export default router;
+export default router; */
