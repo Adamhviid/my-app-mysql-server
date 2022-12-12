@@ -15,10 +15,14 @@ import updateUsername from "./MySQL/routes/Users/updateUsername.js"; */
 
 //sequelize imports
 import sequelize from "./MySQL/Sequelize/ORM_connection.js";
-import authorization from "./MySQL/Sequelize/Models/authorization.js";
-import register from "./MySQL/Sequelize/Routes/register.js";
 import album from "./MySQL/Sequelize/Routes/Artist/albums.js";
 import artist from "./MySQL/Sequelize/Routes/Artist/artist.js";
+import authorization from "./MySQL/Sequelize/Models/authorization.js";
+import register from "./MySQL/Sequelize/Routes/User/Register.js";
+import login from "./MySQL/Sequelize/Routes/User/Login.js";
+import getUser from "./MySQL/Sequelize/Routes/User/getUser.js";
+import updateUsername from "./MySQL/Sequelize/Routes/User/UpdateUsername.js";
+import deleteAccount from "./MySQL/Sequelize/Routes/User/Delete.js";
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -60,10 +64,10 @@ app.use("/api", API);
 app.use('/db', artist)
 app.use('/db', album)
 app.use('/auth', register)
-/* app.use('/auth', login)
+app.use('/auth', login)
 app.use('/auth', deleteAccount)
 app.use('/auth', getUser)
-app.use('/auth', updateUsername) */
+app.use('/auth', updateUsername)
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

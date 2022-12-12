@@ -11,12 +11,10 @@ router.get("/search/artist/:artist", async (req, res) => {
   await Artist.findOne({
     where: { strArtist: artist }
   }).then(async (result) => {
-    res.send(result);
-    if (result.length === 0) {
+    if (result === null || result.length === 0) {
       const { data } = await axios.get(
         "http://localhost:3001/api/search/artist/" + artist
       );
-
       await Artist.create({
         idArtist: data.idArtist,
         strArtist: data.strArtist,
@@ -43,12 +41,22 @@ router.get("/search/artist/:artist", async (req, res) => {
         strArtistFanart2: data.strArtistFanart2,
         strArtistFanart3: data.strArtistFanart3,
         strArtistBanner: data.strArtistBanner,
-      });
-      return res.send(data[0]);
+      }).then(async () => {
+        await Artist.findOne({
+          where: { strArtist: artist }
+        }).then(async (result) => {
+          console.log("No artist found for " + artist);
+          return res.send(result);
+        })
+      })
+    } else {
+      console.log("Artist found for " + artist);
+      return res.send(result);
     }
   }).catch((err) => {
     console.log(err);
   })
-});
+})
+
 
 export default router;

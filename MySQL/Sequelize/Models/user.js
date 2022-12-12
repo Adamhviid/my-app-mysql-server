@@ -3,9 +3,9 @@ import sequelize from "../ORM_connection.js"
 
 const User = sequelize.define("users", {
   id: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    primaryKey: true,
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
   },
   username: {
     type: DataTypes.STRING,
