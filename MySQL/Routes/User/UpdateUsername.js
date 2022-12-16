@@ -1,5 +1,5 @@
 import express from "express";
-import UpdateUsername from "../../Services/UpdateUsername";
+import UpdateUsername from "../../Services/UpdateUsername.js";
 
 const router = express.Router();
 

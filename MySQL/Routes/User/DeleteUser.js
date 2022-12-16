@@ -2,7 +2,7 @@ import express from "express";
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import DeleteUser from '../../Models/deleteuser.js';
+import DeleteUser from '../../Services/DeleteUser.js'
 
 const router = express.Router();
 

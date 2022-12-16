@@ -5,18 +5,19 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 export default async function Login(userEmail, userPassword) {
-  try {
-    User.findOne({
-      where: {
-        email: userEmail
-      }
-    }).then(async user => {
+  User.findOne({
+    where: {
+      email: userEmail
+    }
+  }).then(async user => {
+    if (user) {
       const passwordCompare = await bcrypt.compare(userPassword, user.password);
+      console.log("passwordCompare: " + passwordCompare)
       if (passwordCompare) {
         const token = jwt.sign(
           {
-            id: user.id,
-            email: email,
+            user_id: user.id,
+            email: user.email,
             authorization: user.authorization
           },
           `${process.env.JWT_TOKEN_SECRET}`,
@@ -25,14 +26,15 @@ export default async function Login(userEmail, userPassword) {
           }
         );
         user.token = token;
-        return res.status(200).json(user);
+        return user;
       } else {
-        return res.status(400).send("Invalid Credentials");
+        return "Invalid Credentials";
       }
-    }).catch(err => {
-      return res.status(500).json(err);
-    })
-  } catch (err) {
-    throw err
-  }
+    } else {
+      console.log("Invalid Credentials")
+      return "Invalid Credentials";
+    }
+  }).catch(err => {
+    return err;
+  })
 }

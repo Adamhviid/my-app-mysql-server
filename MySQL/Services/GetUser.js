@@ -1,4 +1,4 @@
-import User from '../../Models/user.js';
+import User from '../Models/user.js';
 
 export default async function GetUser(userEmail) {
   try {
@@ -7,10 +7,10 @@ export default async function GetUser(userEmail) {
         email: userEmail
       }
     }).then(res => {
-      return res.status(200).json(res);
+      return res;
     }
     ).catch(err => {
-      return res.status(500).json(err);
+      return err;
     })
   } catch (err) {
     throw err

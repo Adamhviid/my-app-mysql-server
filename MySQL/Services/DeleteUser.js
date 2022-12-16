@@ -7,9 +7,9 @@ export default async function DeleteUser(userId) {
         id: userId
       }
     }).then(res => {
-      return res.status(200).json(res);
+      return "User deleted";
     }).catch(err => {
-      return res.status(500).json(err);
+      return err;
     })
   } catch (err) {
     throw err;

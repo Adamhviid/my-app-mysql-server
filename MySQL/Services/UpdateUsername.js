@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import User from '../../Models/user.js';
+import User from '../Models/user.js';
 
 export default async function UpdateUsername(userId, newUsername) {
   try {
@@ -12,10 +12,10 @@ export default async function UpdateUsername(userId, newUsername) {
         id: userId
       }
     }).then(res => {
-      return res.status(200).json(res);
+      return res
     }
     ).catch(err => {
-      return res.status(500).json(err);
+      return err
     })
   } catch (err) {
     throw err

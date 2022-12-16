@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import User from '../../Models/user.js';
+import User from '../Models/user.js';
 
 export default async function Register(userEmail, userPassword) {
   try {
@@ -13,9 +13,8 @@ export default async function Register(userEmail, userPassword) {
       password: hashedPassword,
       authorization: 2
     })
-    return res.status(201).send("User created successfully");
+    return "User created successfully"
   } catch (err) {
-    return res.status(500).json(err);
+    return err
   }
-
 }
