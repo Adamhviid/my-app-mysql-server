@@ -21,11 +21,8 @@ router.post("/register", async (req, res) => {
       email: email,
       password: hashedPassword,
       authorization: 2
-    }).then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
     })
+    res.status(201).send("User created successfully");
   } catch (err) {
     console.log(err);
   }

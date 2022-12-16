@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 import User from '../../Models/user.js';
-import verifyToken from '../../../middleware/verifyToken.js'
+import verifyToken from '../../middleware/verifyToken.js'
 
 const router = express.Router();
 

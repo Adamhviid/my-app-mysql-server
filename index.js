@@ -14,15 +14,15 @@ import getUser from "./MySQL/routes/Users/getUser.js";
 import updateUsername from "./MySQL/routes/Users/updateUsername.js"; */
 
 //sequelize imports
-import sequelize from "./MySQL/Sequelize/ORM_connection.js";
-import album from "./MySQL/Sequelize/Routes/Artist/albums.js";
-import artist from "./MySQL/Sequelize/Routes/Artist/artist.js";
-import authorization from "./MySQL/Sequelize/Models/authorization.js";
-import register from "./MySQL/Sequelize/Routes/User/Register.js";
-import login from "./MySQL/Sequelize/Routes/User/Login.js";
-import getUser from "./MySQL/Sequelize/Routes/User/getUser.js";
-import updateUsername from "./MySQL/Sequelize/Routes/User/UpdateUsername.js";
-import deleteAccount from "./MySQL/Sequelize/Routes/User/Delete.js";
+import sequelize from "./MySQL/MySQL_connection.js";
+import album from "./MySQL/Routes/Artist/albums.js";
+import artist from "./MySQL/Routes/Artist/artist.js";
+import authorization from "./MySQL/Models/authorization.js";
+import register from "./MySQL/Routes/User/Register.js";
+import login from "./MySQL/Routes/User/Login.js";
+import getUser from "./MySQL/Routes/User/getUser.js";
+import updateUsername from "./MySQL/Routes/User/UpdateUsername.js";
+import deleteAccount from "./MySQL/Routes/User/Delete.js";
 
 const PORT = process.env.PORT || 3001;
 const app = express();

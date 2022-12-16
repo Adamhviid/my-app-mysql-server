@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../ORM_connection.js";
+import sequelize from "../MySQL_connection.js";
 
 const Artist = sequelize.define("artists", {
   idArtist: {
