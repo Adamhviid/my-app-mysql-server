@@ -22,7 +22,7 @@ import register from "./MySQL/Routes/User/Register.js";
 import login from "./MySQL/Routes/User/Login.js";
 import getUser from "./MySQL/Routes/User/getUser.js";
 import updateUsername from "./MySQL/Routes/User/UpdateUsername.js";
-import deleteAccount from "./MySQL/Routes/User/Delete.js";
+import deleteAccount from "./MySQL/Routes/User/DeleteUser.js";
 
 const PORT = process.env.PORT || 3001;
 const app = express();

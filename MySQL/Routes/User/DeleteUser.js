@@ -2,15 +2,14 @@ import express from "express";
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import GetUser from '../../Services/GetUser.js'
-import verifyToken from '../../Middleware/verifyToken.js'
+import DeleteUser from '../../Services/DeleteUser.js'
 
 const router = express.Router();
 
-router.post("/user", verifyToken, async (res) => {
-  const user = res.user;
+router.post("/user/delete", async (req, res) => {
+  const user = req.body;
 
-  GetUser(user.email).then((result) => {
+  DeleteUser(user.id).then((result) => {
     res.status(200).json(result);
   }).catch((err) => {
     res.status(500).json(err);
