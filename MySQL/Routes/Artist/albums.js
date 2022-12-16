@@ -36,12 +36,10 @@ router.get("/search/albums/:artist", async (req, res) => {
         Album.findAll({
           where: { strArtist: artist }
         }).then(async (result) => {
-          console.log("No albums found for " + artist);
           return res.send(result);
         })
       });
     } else {
-      console.log("Albums found for " + artist);
       return res.send(result);
     }
   }).catch((err) => {

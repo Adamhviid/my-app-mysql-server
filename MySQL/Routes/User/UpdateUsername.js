@@ -1,30 +1,16 @@
 import express from "express";
-import * as dotenv from 'dotenv'
-dotenv.config()
-
-import User from '../../Models/user.js';
+import UpdateUsername from "../../Services/UpdateUsername";
 
 const router = express.Router();
 
 router.post("/user/update", async (req, res) => {
-  try {
-    const { id, username } = req.body;
+  const { id, username } = req.body;
 
-    await User.update({
-      username: username
-    }, {
-      where: {
-        id: id
-      }
-    }).then(res => {
-      console.log(res)
-    }
-    ).catch(err => {
-      console.log(err)
-    })
-  } catch (err) {
-    throw err
-  }
+  UpdateUsername(id, username).then((result) => {
+    res.status(200).json(result);
+  }).catch((err) => {
+    res.status(500).json(err);
+  })
 });
 
 export default router;

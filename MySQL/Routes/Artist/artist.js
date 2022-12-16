@@ -45,12 +45,10 @@ router.get("/search/artist/:artist", async (req, res) => {
         await Artist.findOne({
           where: { strArtist: artist }
         }).then(async (result) => {
-          console.log("No artist found for " + artist);
           return res.send(result);
         })
       })
     } else {
-      console.log("Artist found for " + artist);
       return res.send(result);
     }
   }).catch((err) => {
