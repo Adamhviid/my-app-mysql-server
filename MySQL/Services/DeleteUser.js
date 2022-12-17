@@ -6,7 +6,7 @@ export default async function DeleteUser(userId) {
       where: {
         id: userId
       }
-    }).then(res => {
+    }).then(() => {
       return "User deleted";
     }).catch(err => {
       return err;
